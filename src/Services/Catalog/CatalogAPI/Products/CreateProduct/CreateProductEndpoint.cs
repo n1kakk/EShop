@@ -1,4 +1,10 @@
-﻿namespace CatalogAPI.Products.CreateProduct;
+﻿using Carter;
+using Microsoft.AspNetCore.Builder;
+using Microsoft.AspNetCore.Http;
+using Microsoft.AspNetCore.Routing;
+using System;
+
+namespace CatalogAPI.Products.CreateProduct;
 
 public record CreatePtoductRequest(string Name, List<string> Category, string Description,
     string ImageFile, decimal Price);
@@ -24,5 +30,13 @@ public class CreateProductEndpoint : ICarterModule
           .ProducesProblem(StatusCodes.Status400BadRequest)
           .WithSummary("Create Product")
           .WithDescription("Create Product");
+
+        //app.MapGet("/products", () => "Hello World!");
     }
+
+
 }
+
+
+
+

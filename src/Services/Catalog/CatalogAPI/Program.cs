@@ -1,15 +1,27 @@
+using Microsoft.Extensions.DependencyInjection;
+
 var builder = WebApplication.CreateBuilder(args);
 
 //Add services to the container
+    builder.Services.AddMediatR(cfg =>
+    {
+        cfg.RegisterServicesFromAssembly(typeof(Program).Assembly);
+    });
+
 builder.Services.AddCarter();
-builder.Services.AddMediatR(cfg =>
+
+builder.Services.AddMarten(opt =>
 {
-    cfg.RegisterServicesFromAssembly(typeof(Program).Assembly);
-});
+    opt.Connection(builder.Configuration.GetConnectionString("Database")!);
+}).UseLightweightSessions();
 
 var app = builder.Build();
 
-//Configure the Http request pipeline
+
 app.MapCarter();
+
+//app.MapGet("/products", () => "Hello World!");
+
+
 
 app.Run();
