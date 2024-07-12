@@ -1,4 +1,5 @@
 ﻿using Basket.API.Basket.SetBasket;
+using Basket.API.Data;
 using Basket.API.Models;
 using BuildingBlocks.CQRS;
 using FluentValidation;
@@ -17,12 +18,12 @@ public class DeleteBasketCommandValidator : AbstractValidator<DeleteBasketComman
 		RuleFor(x => x.UserName).NotEmpty().WithMessage("Username is required");
 	}
 }
-public class DeleteBasketHandler : ICommandHandler<DeleteBasketCommand, DeleteBasketResult>
+public class DeleteBasketHandler(IBasketRepository repo) : ICommandHandler<DeleteBasketCommand, DeleteBasketResult>
 {
 	public async Task<DeleteBasketResult> Handle(DeleteBasketCommand command, CancellationToken cancellationToken)
 	{
-		//TODO: delete basket from db and cache
-		//session.Delete<Product>(command.Id);
+		
+		repo.DeleteBasket(command.UserName, cancellationToken);
 
 		return new DeleteBasketResult(true);
 	}
