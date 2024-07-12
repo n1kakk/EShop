@@ -22,7 +22,7 @@ public class StoreBasketEndpoint : ICarterModule
 
 			return Results.Created($"/basket/{response.UserName}", response);
 		}).WithName("CreateProduct")
-		  .Produces<GetBasketResponse>(StatusCodes.Status200OK)
+		  .Produces<StoreBasketResponse>(StatusCodes.Status200OK)
 		  .ProducesProblem(StatusCodes.Status400BadRequest)
 		  .WithSummary("Create Product")
 		  .WithDescription("Create Product");
