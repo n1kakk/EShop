@@ -8,7 +8,7 @@ public class CatalogInitialData : IInitialData
 	{
 		using var session = store.LightweightSession();
 
-		if(await session.Query<Product>().AnyAsync())
+		if (await session.Query<Product>().AnyAsync())
 		{
 			return;
 		}
@@ -17,6 +17,8 @@ public class CatalogInitialData : IInitialData
 
 		session.Store<Product>(GetPreConfiguredProducts());
 		await session.SaveChangesAsync();
+
+
 	}
 
 	private static IEnumerable<Product> GetPreConfiguredProducts() => new List<Product>()
