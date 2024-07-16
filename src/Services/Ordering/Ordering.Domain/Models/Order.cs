@@ -1,5 +1,6 @@
 ﻿using Ordering.Domain.Abstractions;
 using Ordering.Domain.Enums;
+using Ordering.Domain.Events;
 using Ordering.Domain.ValueObjects;
 
 namespace Ordering.Domain.Models;
@@ -49,7 +50,7 @@ public class Order: Aggregate<OrderId>
 		Payment = payment;
 		Status = orderStatus;
 
-		AddDomainEvent(new OrderUpdatedEvent(order));
+		AddDomainEvent(new OrderUpdatedEvent(this));
 	}
 
 	public void Add(ProductId productId, int quantity, decimal price) 
