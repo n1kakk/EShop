@@ -2,6 +2,7 @@
 using Microsoft.EntityFrameworkCore.Diagnostics;
 using Microsoft.Extensions.Configuration;
 using Microsoft.Extensions.DependencyInjection;
+using Microsoft.Extensions.Logging;
 using Ordering.Application.Data;
 using Ordering.Infrastructure.Data;
 using Ordering.Infrastructure.Data.Interceptors;
@@ -22,7 +23,9 @@ public static class DependencyInjection
 		services.AddDbContext<ApplicationDbContext>((sp, options) =>
 		{
 			options.AddInterceptors(sp.GetServices<ISaveChangesInterceptor>());
-			options.UseSqlServer(connectionString);
+			options.UseSqlServer(connectionString)
+			.LogTo(Console.WriteLine, new[] { DbLoggerCategory.Database.Command.Name }, LogLevel.Information )
+			.EnableSensitiveDataLogging();
 		});
 
 		services.AddScoped<IApplicationDbContext, ApplicationDbContext>();
