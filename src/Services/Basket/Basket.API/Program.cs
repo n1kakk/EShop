@@ -2,6 +2,7 @@ using Basket.API.Data;
 using Basket.API.Models;
 using BuildingBlocks.Behaviors;
 using BuildingBlocks.Exceptions;
+using BuildingBlocks.Messaging.MassTransit;
 using Carter;
 using Discount.Grpc;
 using HealthChecks.UI.Client;
@@ -38,6 +39,8 @@ builder.Services.AddStackExchangeRedisCache(opt =>
 {
 	opt.Configuration = builder.Configuration.GetConnectionString("Redis");
 });
+
+builder.Services.AddMessageBroker(builder.Configuration);
 
 
 //Grpc Services
