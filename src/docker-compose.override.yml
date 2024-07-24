@@ -129,7 +129,7 @@ services:
       - ASPNETCORE_HTTP_PORTS=8080
       - ASPNETCORE_HTTPS_PORTS=8081
     depends_on:
-      - catalog.api
+      - catalogapi
       - basket.api
       - ordering.api
     ports:
