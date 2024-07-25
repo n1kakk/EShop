@@ -1,4 +1,6 @@
+using Identity.App.Configs;
 using Identity.App.Data;
+using Identity.App.Services;
 using Microsoft.AspNetCore.Identity;
 using Microsoft.EntityFrameworkCore;
 
@@ -21,7 +23,7 @@ builder.Services.AddIdentity<IdentityUser, IdentityRole>(options =>
 		options.Lockout.MaxFailedAccessAttempts = 5;
 		options.Lockout.DefaultLockoutTimeSpan = TimeSpan.FromMinutes(10);
 
-		options.User.RequireUniqueEmail = true;
+		//options.User.RequireUniqueEmail = true;
 		options.SignIn.RequireConfirmedEmail = true;
 
 	}).AddEntityFrameworkStores<ApplicationDbContext>()
@@ -33,6 +35,9 @@ builder.Services.ConfigureApplicationCookie(options =>
 	options.AccessDeniedPath = "/Account/AccessDenied";
 });
 
+builder.Services.Configure<SmtpConfig>(builder.Configuration.GetSection("SMTP"));
+
+builder.Services.AddScoped<IEmailService, EmailService>();
 
 var app = builder.Build();
 
