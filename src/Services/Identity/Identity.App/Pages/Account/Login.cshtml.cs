@@ -39,7 +39,7 @@ public class LoginModel : PageModel
         {
             if (result.RequiresTwoFactor)
             {
-                return RedirectToPage("/Account/LoginTwoFactor", 
+                return RedirectToPage("/Account/LoginTwoFactorWithAuthenticatorModel", 
                 new {
                     Email = this.Credential.Email,
                     RememberMe = this.Credential.RememberMe
