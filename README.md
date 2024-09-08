@@ -26,13 +26,13 @@ The project is based on a microservice architecture, with multiple services mana
 - [gRPC](https://grpc.io/) and REST API: Used for data exchange between microservices.
 - [RabbitMQ](https://www.rabbitmq.com/): Message queueing system for processing messages between services.
 - [Entity Framework Core](https://learn.microsoft.com/en-us/ef/core/): ORM for database management.
-- [PostgreSQL](https://www.postgresql.org/) and [MongoDB](https://www.mongodb.com/): Main databases.
+- [PostgreSQL](https://www.postgresql.org/): Main database.
 - [YARP Gateway](https://microsoft.github.io/reverse-proxy/): Proxy server for request routing.
 - [Docker](https://www.docker.com/): Application containerization.
-- [MediatR](https://github.com/jbogard/MediatR): library that implements the Mediator pattern.
-- [FluentValidation](https://fluentvalidation.net/): is a popular library for building strongly-typed validation rules.
-- [Redis](https://redis.io/meeting/?gad_source=1&utm_content=redis_exact): is an in-memory data structure store used as a cache to enhance application performance.
-- [SQLite](https://www.sqlite.org/): is a lightweight, serverless, self-contained SQL database engine.
+- [MediatR](https://github.com/jbogard/MediatR): Library that implements the Mediator pattern.
+- [FluentValidation](https://fluentvalidation.net/): Used for building strongly-typed validation rules.
+- [Redis](https://redis.io/meeting/?gad_source=1&utm_content=redis_exact): Used as a cache to enhance application performance.
+- [SQLite](https://www.sqlite.org/): Self-contained SQL database engine.
  
 
 ## Deployment
